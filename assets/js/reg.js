@@ -4,9 +4,6 @@ document.querySelector('.registration-form').addEventListener('submit', function
     const form = e.target;
     const formData = new FormData(form);
 
-    // Show a "Processing..." alert
-    alert('Processing your registration. Please wait...');
-
     // Clear previous messages
     const messageContainer = document.querySelector('.form-messages');
     messageContainer.textContent = 'Processing...';
