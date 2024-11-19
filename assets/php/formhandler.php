@@ -3,9 +3,9 @@ header('Content-Type: application/json');
 
 // Database credentials
 $host = 'localhost';
-$dbname = 'conference_db';
-$username = 'root';
-$password = '';
+$dbname = 'rebicor4_conference_db';
+$username = 'rebicor4_root';
+$password = 'conference_db';
 
 try {
     // Secure connection using PDO
