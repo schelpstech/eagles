@@ -56,6 +56,7 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/js/jquery-3.6.4.min.js"></script>
 </head>
 
 <body class="gray-body">
@@ -948,165 +949,148 @@ Speakers Area
     <!--==============================
 Registation Area  
 ==============================-->
-    <div class="bg-smoke space" data-bg-src="assets/img/bgd/contact_bg_1.png" id="registration-sec">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-8">
-                    <div class="title-area mb-35 text-xl-start text-center">
-                        <span class="sub-title">
-                            <div class="icon-masking me-2">
-                                <span class="mask-icon" data-mask-src="assets/img/theme-img/title_shape_2.svg"></span>
-                                <img src="assets/img/theme-img/title_shape_2.svg" alt="shape" />
-                            </div>
-                            Register for the Conference!
-                        </span>
-                        <h2 class="sec-title">Fill the Form Below</h2>
-                        <p class="sec-text">
-                            Join us for an impactful conference. Kindly complete the form to
-                            indicate your participation preferences and church details.
-                        </p>
-                    </div>
-                    <form action="register.php" method="POST" class="registration-form ajax-contact" novalidate>
-                        <div class="row">
-                            <!-- Full Name -->
-                            <div class="form-group col-md-6">
-                                <input type="text" class="form-control" name="fullname" id="fullname"
-                                    placeholder="Full Name" required />
-                                <i class="fal fa-user"></i>
-                            </div>
-
-                            <!-- Gender -->
-                            <div class="form-group col-md-6">
-                                <select name="gender" id="gender" class="form-select" required>
-                                    <option value="" disabled selected hidden>
-                                        Select Gender
-                                    </option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                                <i class="fal fa-chevron-down"></i>
-                            </div>
-
-                            <!-- Title -->
-                            <div class="form-group col-md-6">
-                                <select name="title" id="title" class="form-select" required>
-                                    <option value="" disabled selected hidden>
-                                        Select Title
-                                    </option>
-                                    <option value="Pastor">Pastor</option>
-                                    <option value="Evangelist">Evangelist</option>
-                                    <option value="Apostle">Apostle</option>
-                                    <option value="Prophet">Prophet</option>
-                                    <option value="Prophetess">Prophetess</option>
-                                    <option value="Deacon">Deacon</option>
-                                    <option value="Deaconess">Deaconess</option>
-                                    <option value="Elder">Elder</option>
-                                    <option value="Bishop">Bishop</option>
-                                    <option value="Rev">Rev</option>
-                                    <option value="Dr">Dr</option>
-                                    <option value="Prof">Prof</option>
-                                    <option value="Brother">Brother</option>
-                                    <option value="Sister">Sister</option>
-                                </select>
-                                <i class="fal fa-chevron-down"></i>
-                            </div>
-
-                            <!-- Position in Church -->
-                            <div class="form-group col-md-6">
-                                <select name="position" id="position" class="form-select" required>
-                                    <option value="" disabled selected hidden>
-                                        Position in Church
-                                    </option>
-                                    <option value="Worker">Worker</option>
-                                    <option value="Minister">Minister</option>
-                                    <option value="General Overseer">General Overseer</option>
-                                    <option value="Deputy General Overseer">
-                                        Deputy General Overseer
-                                    </option>
-                                </select>
-                                <i class="fal fa-chevron-down"></i>
-                            </div>
-
-                            <!-- Department in Church -->
-                            <div class="form-group col-md-6">
-                                <select name="department" id="department" class="form-select" required>
-                                    <option value="" disabled selected hidden>
-                                        Department in Church
-                                    </option>
-                                    <option value="Ushering">Ushering</option>
-                                    <option value="Protocol">Protocol</option>
-                                    <option value="Choir">Choir</option>
-                                    <option value="Church Administrator">
-                                        Church Administrator
-                                    </option>
-                                    <option value="Technical/Media">Technical/Media</option>
-                                    <option value="Children's Ministry">
-                                        Children's Ministry
-                                    </option>
-                                    <option value="Youth Ministry">Youth Ministry</option>
-                                    <option value="Welfare">Welfare</option>
-                                    <option value="Prayer Department">Prayer Department</option>
-                                    <option value="Evangelism Team">Evangelism Team</option>
-                                    <option value="Sanctuary Keepers">Sanctuary Keepers</option>
-                                    <option value="Counseling Unit">Counseling Unit</option>
-                                    <option value="Hospitality">Hospitality</option>
-                                    <option value="Bible Study Team">Bible Study Team</option>
-                                    <option value="Transport Team">Transport Team</option>
-                                    <option value="Finance Team">Finance Team</option>
-                                    <option value="Drama Group">Drama Group</option>
-                                    <option value="Intercessory Group">
-                                        Intercessory Group
-                                    </option>
-                                </select>
-                                <i class="fal fa-chevron-down"></i>
-                            </div>
-
-                            <!-- Mode of Participation -->
-                            <div class="form-group col-md-6">
-                                <select name="participation_mode" id="participation_mode" class="form-select" required>
-                                    <option value="" disabled selected hidden>
-                                        Mode of Participation
-                                    </option>
-                                    <option value="Online">Online</option>
-                                    <option value="Offline">Offline</option>
-                                </select>
-                                <i class="fal fa-chevron-down"></i>
-                            </div>
-
-                            <!-- Email -->
-                            <div class="form-group col-md-6">
-                                <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="Email Address" required />
-                                <i class="fal fa-envelope"></i>
-                            </div>
-
-                            <!-- Phone Number -->
-                            <div class="form-group col-md-6">
-                                <input type="tel" class="form-control" name="phone" id="phone"
-                                    placeholder="Phone Number" pattern="[0-9]+" required />
-                                <i class="fal fa-phone"></i>
-                            </div>
-
-                            <!-- Church Name -->
-                            <div class="form-group col-12">
-                                <input type="text" class="form-control" name="church_name" id="church_name"
-                                    placeholder="Church Name" required />
-                                <i class="fal fa-church"></i>
-                            </div>
-
-                            <!-- Submit Button -->
-                            <div class="form-btn text-xl-start text-center col-12">
-                                <button type="submit" class="th-btn">
-                                    Register Now<i class="fa-regular fa-arrow-right ms-2"></i>
-                                </button>
-                            </div>
+<div class="bg-smoke space" data-bg-src="assets/img/bgd/contact_bg_1.png" id="registration-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="title-area mb-35 text-xl-start text-center">
+                    <span class="sub-title">
+                        <div class="icon-masking me-2">
+                            <span class="mask-icon" data-mask-src="assets/img/theme-img/title_shape_2.svg"></span>
+                            <img src="assets/img/theme-img/title_shape_2.svg" alt="shape" />
                         </div>
-                        <p class="form-messages mb-0 mt-3"></p>
-                    </form>
+                        Register for the Conference!
+                    </span>
+                    <h2 class="sec-title">Fill the Form Below</h2>
+                    <p class="sec-text">
+                        Join us for an impactful conference. Kindly complete the form to
+                        indicate your participation preferences and church details.
+                    </p>
                 </div>
+                <!-- Registration Form -->
+                <form class="registration-form" novalidate>
+                    <div class="row">
+                        <!-- Full Name -->
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" name="fullname" id="fullname"
+                                placeholder="Full Name" required />
+                            <i class="fal fa-user"></i>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="form-group col-md-6">
+                            <select name="gender" id="gender" class="form-select" required>
+                                <option value="" disabled selected hidden>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <i class="fal fa-chevron-down"></i>
+                        </div>
+
+                        <!-- Title -->
+                        <div class="form-group col-md-6">
+                            <select name="title" id="title" class="form-select" required>
+                                <option value="" disabled selected hidden>Select Title</option>
+                                <option value="Pastor">Pastor</option>
+                                <option value="Evangelist">Evangelist</option>
+                                <option value="Apostle">Apostle</option>
+                                <option value="Prophet">Prophet</option>
+                                <option value="Prophetess">Prophetess</option>
+                                <option value="Deacon">Deacon</option>
+                                <option value="Deaconess">Deaconess</option>
+                                <option value="Elder">Elder</option>
+                                <option value="Bishop">Bishop</option>
+                                <option value="Rev">Rev</option>
+                                <option value="Dr">Dr</option>
+                                <option value="Prof">Prof</option>
+                                <option value="Brother">Brother</option>
+                                <option value="Sister">Sister</option>
+                            </select>
+                            <i class="fal fa-chevron-down"></i>
+                        </div>
+
+                        <!-- Position in Church -->
+                        <div class="form-group col-md-6">
+                            <select name="position" id="position" class="form-select" required>
+                                <option value="" disabled selected hidden>Position in Church</option>
+                                <option value="Worker">Worker</option>
+                                <option value="Minister">Minister</option>
+                                <option value="General Overseer">General Overseer</option>
+                                <option value="Deputy General Overseer">Deputy General Overseer</option>
+                            </select>
+                            <i class="fal fa-chevron-down"></i>
+                        </div>
+
+                        <!-- Department in Church -->
+                        <div class="form-group col-md-6">
+                            <select name="department" id="department" class="form-select" required>
+                                <option value="" disabled selected hidden>Department in Church</option>
+                                <option value="Ushering">Ushering</option>
+                                <option value="Protocol">Protocol</option>
+                                <option value="Choir">Choir</option>
+                                <option value="Church Administrator">Church Administrator</option>
+                                <option value="Technical/Media">Technical/Media</option>
+                                <option value="Children's Ministry">Children's Ministry</option>
+                                <option value="Youth Ministry">Youth Ministry</option>
+                                <option value="Welfare">Welfare</option>
+                                <option value="Prayer Department">Prayer Department</option>
+                                <option value="Evangelism Team">Evangelism Team</option>
+                                <option value="Sanctuary Keepers">Sanctuary Keepers</option>
+                                <option value="Counseling Unit">Counseling Unit</option>
+                                <option value="Hospitality">Hospitality</option>
+                                <option value="Bible Study Team">Bible Study Team</option>
+                                <option value="Transport Team">Transport Team</option>
+                                <option value="Finance Team">Finance Team</option>
+                                <option value="Drama Group">Drama Group</option>
+                                <option value="Intercessory Group">Intercessory Group</option>
+                            </select>
+                            <i class="fal fa-chevron-down"></i>
+                        </div>
+
+                        <!-- Mode of Participation -->
+                        <div class="form-group col-md-6">
+                            <select name="participation_mode" id="participation_mode" class="form-select" required>
+                                <option value="" disabled selected hidden>Mode of Participation</option>
+                                <option value="Online">Online</option>
+                                <option value="Onsite">Onsite</option>
+                            </select>
+                            <i class="fal fa-chevron-down"></i>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group col-md-6">
+                            <input type="email" class="form-control" name="email" id="email"
+                                placeholder="Email Address" />
+                            <i class="fal fa-envelope"></i>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="form-group col-md-6">
+                            <input type="tel" class="form-control" name="phone" id="phone"
+                                placeholder="Phone Number" pattern="[0-9]+" minlength="11" maxlength="11" required />
+                            <i class="fal fa-phone"></i>
+                        </div>
+
+                        <!-- Church Name -->
+                        <div class="form-group col-12">
+                            <input type="text" class="form-control" name="church_name" id="church_name"
+                                placeholder="Church Name" required />
+                            <i class="fal fa-church"></i>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="form-btn text-xl-start text-center col-12">
+                            <button type="submit" class="th-btn">
+                                Register Now<i class="fa-regular fa-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="form-messages mb-0 mt-3"></p>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
     <!--==============================
 	Footer Area
@@ -1284,6 +1268,8 @@ Registation Area
     <script src="assets/js/particles-config.js"></script>
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+    <!-- Reg Ajax Js File -->
+    <script src="assets/js/reg.js"></script>
 </body>
 
 </html>
