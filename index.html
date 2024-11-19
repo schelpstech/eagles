@@ -207,12 +207,12 @@ Home Area
                                     <a href="#registration-sec" class="th-btn style3 style-radius">Register Now</a>
                                 </div>
                                 <div class="call-btn" data-ani="slideinright" data-ani-delay="0.9s">
-                                    <a href="https://www.facebook.com/share/v/1AT4fPZHVT/"
+                                    <a href="https://web.facebook.com/reconciliationbible.ch/videos/674150031511333/?__tn__=F"
                                        class="play-btn popup-video">
                                         <i class="fas fa-play"></i>
                                     </a>
                                     <div class="media-body">
-                                        <a href="https://www.facebook.com/share/v/1AT4fPZHVT/"
+                                        <a href="https://web.facebook.com/reconciliationbible.ch/videos/674150031511333/?__tn__=F"
                                            class="btn-title popup-video">Watch Conference Preview</a>
                                     </div>
                                 </div>
@@ -242,12 +242,12 @@ Home Area
                                     <a href="#registration-sec" class="th-btn style3 style-radius">Register Now</a>
                                 </div>
                                 <div class="call-btn" data-ani="slideinright" data-ani-delay="0.9s">
-                                    <a href="https://www.facebook.com/share/v/1AT4fPZHVT/"
+                                    <a href="https://web.facebook.com/reconciliationbible.ch/videos/674150031511333/?__tn__=F"
                                        class="play-btn popup-video">
                                         <i class="fas fa-play"></i>
                                     </a>
                                     <div class="media-body">
-                                        <a href="https://www.facebook.com/share/v/1AT4fPZHVT/"
+                                        <a href="https://web.facebook.com/reconciliationbible.ch/videos/674150031511333/?__tn__=F"
                                            class="btn-title popup-video">Watch Conference Preview</a>
                                     </div>
                                 </div>
@@ -277,12 +277,12 @@ Home Area
                                     <a href="#registration-sec" class="th-btn style3 style-radius">Register Now</a>
                                 </div>
                                 <div class="call-btn" data-ani="slideinright" data-ani-delay="0.9s">
-                                    <a href="https://www.facebook.com/share/v/1AT4fPZHVT/"
+                                    <a href="https://web.facebook.com/reconciliationbible.ch/videos/674150031511333/?__tn__=F"
                                        class="play-btn popup-video">
                                         <i class="fas fa-play"></i>
                                     </a>
                                     <div class="media-body">
-                                        <a href="https://www.facebook.com/share/v/1AT4fPZHVT/"
+                                        <a href="https://web.facebook.com/reconciliationbible.ch/videos/674150031511333/?__tn__=F"
                                            class="btn-title popup-video">Watch Conference Preview</a>
                                     </div>
                                 </div>
@@ -453,7 +453,7 @@ About Area
                                 </ul>
                             </div>
                             <div class="about-btn mt-50">
-                                <a href="https://www.youtube.com/watch?v=_sI_Ps7JSEk"
+                                <a href="https://web.facebook.com/reconciliationbible.ch/videos/674150031511333/?__tn__=F"
                                     class="th-btn popup-video style-radius"><i
                                         class="fa-solid fa-circle-play me-2"></i>Watch
                                     Conference Highlights</a>
@@ -1257,6 +1257,27 @@ Registation Area
     <script src="assets/js/main.js"></script>
     <!-- Reg Ajax Js File -->
     <script src="assets/js/reg.js"></script>
+
+    <script>
+        $(document).ready(function() {
+    $('.popup-video').magnificPopup({
+        type: 'iframe',
+        iframe: {
+            patterns: {
+                facebook: {
+                    index: 'facebook.com', // URL pattern
+                    id: function(url) {
+                        var id = url.match(/videos\/(\d+)/);
+                        return id ? id[1] : null;
+                    },
+                    src: 'https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/video.php?v=%id%&show_text=0'
+                }
+            }
+        }
+    });
+});
+
+    </script>
 </body>
 
 </html>
