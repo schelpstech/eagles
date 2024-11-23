@@ -7,12 +7,15 @@ $dbname = 'rebicor4_conference_db';
 $username = 'rebicor4_root';
 $password = 'conference_db';
 
+// Receipt directory
+$uploadDir = __DIR__ . '/../receipt/';
+
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Database connection failed.']);
+    echo json_encode(['success' => false, 'message' => 'Database connection failed: ' . $e->getMessage()]);
     exit;
 }
 
@@ -27,15 +30,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = htmlspecialchars(trim($_POST['email'] ?? ''));
     $phone = htmlspecialchars(trim($_POST['phone'] ?? ''));
     $church_name = htmlspecialchars(trim($_POST['church_name'] ?? ''));
+    $payment_receipt = $_FILES['payment_receipt'] ?? null;
+    $transaction_date = htmlspecialchars(trim($_POST['transaction_date'] ?? ''));
 
     // Generate unique reference
     $ref = "WLC24" . str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
 
     // Validate required fields
     if (empty($fullname) || empty($gender) || empty($title) || empty($position) ||
-        empty($department) || empty($participation_mode) || empty($phone) || empty($church_name)) {
+        empty($department) || empty($participation_mode) || empty($phone) || empty($church_name)  || empty($transaction_date)) {
         http_response_code(400);
         echo json_encode(['success' => false, 'message' => 'All fields are required.']);
+        exit;
+    }
+
+    // Validate file upload
+    if ($payment_receipt && $payment_receipt['error'] === UPLOAD_ERR_OK) {
+        $allowedMimeTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+        $fileMimeType = mime_content_type($payment_receipt['tmp_name']);
+        $fileExtension = pathinfo($payment_receipt['name'], PATHINFO_EXTENSION);
+        $uniqueFileName = uniqid("receipt_") . '.' . $fileExtension;
+        $uploadPath = $uploadDir . $uniqueFileName;
+
+        if (!in_array($fileMimeType, $allowedMimeTypes)) {
+            http_response_code(400);
+            echo json_encode(['success' => false, 'message' => 'Invalid file type. Only JPG, PNG, and PDF are allowed.']);
+            exit;
+        }
+
+        // Move uploaded file
+        if (!move_uploaded_file($payment_receipt['tmp_name'], $uploadPath)) {
+            http_response_code(500);
+            echo json_encode(['success' => false, 'message' => 'Failed to upload file.']);
+            exit;
+        }
+    } else {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'File upload is required.']);
         exit;
     }
 
@@ -51,8 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } while ($exists > 0);
 
         $query = "INSERT INTO registrations 
-                  (regid, fullname, gender, title, position, department, participation_mode, email, phone, church_name)
-                  VALUES (:ref, :fullname, :gender, :title, :position, :department, :participation_mode, :email, :phone, :church_name)";
+                  (regid, fullname, gender, title, position, department, participation_mode, email, phone, church_name, payment_receipt, transaction_date)
+                  VALUES (:ref, :fullname, :gender, :title, :position, :department, :participation_mode, :email, :phone, :church_name, :payment_receipt, :transaction_date)";
 
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':fullname', $fullname);
@@ -65,6 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':phone', $phone);
         $stmt->bindParam(':church_name', $church_name);
         $stmt->bindParam(':ref', $ref);
+        $stmt->bindParam(':payment_receipt', $uniqueFileName);
+        $stmt->bindParam(':transaction_date', $transaction_date);
 
         $stmt->execute();
         http_response_code(200);

@@ -3,43 +3,120 @@ document.querySelector('.registration-form').addEventListener('submit', function
 
     const form = e.target;
     const formData = new FormData(form);
-
-    // Clear previous messages
     const messageContainer = document.querySelector('.form-messages');
-    messageContainer.textContent = 'Processing...';
-    messageContainer.style.color = 'blue';
+    const submitButton = form.querySelector('button[type="submit"]');
+    let isValid = true;
 
-    // AJAX request using Fetch API
+    // Reset previous messages
+    messageContainer.textContent = '';
+    messageContainer.style.color = '';
+
+    // Helper function to show alerts
+    function showAlert(message) {
+        alert(message);
+        isValid = false;
+    }
+
+    // Field validations
+    const requiredFields = [
+        { name: 'fullname', errorMessage: 'Full name is required.' },
+        { name: 'gender', errorMessage: 'Gender is required.' },
+        { name: 'title', errorMessage: 'Title is required.' },
+        { name: 'position', errorMessage: 'Position is required.' },
+        { name: 'department', errorMessage: 'Department is required.' },
+        { name: 'participation_mode', errorMessage: 'Participation mode is required.' },
+        { name: 'phone', errorMessage: 'Phone number is required.' },
+        { name: 'church_name', errorMessage: 'Church name is required.' },
+    ];
+
+    requiredFields.forEach(field => {
+        const input = form.querySelector(`[name="${field.name}"]`);
+        if (!input || !input.value.trim()) {
+            showAlert(field.errorMessage);
+        }
+    });
+
+    // Validate phone number
+    const phoneInput = form.querySelector('[name="phone"]');
+    if (phoneInput) {
+        const phone = phoneInput.value.trim();
+        if (!/^\d{11}$/.test(phone)) {
+            showAlert('Phone number must be exactly 11 digits.');
+        }
+    }
+
+    // Validate church name
+    const churchNameInput = form.querySelector('[name="church_name"]');
+    if (churchNameInput) {
+        const churchName = churchNameInput.value.trim();
+        const wordCount = churchName.split(/\s+/).length;
+
+        if (wordCount < 2) {
+            showAlert('Church name must be written in full (at least 4 words).');
+        }
+    }
+
+    // Validate transaction date
+    const transactionDateInput = form.querySelector('[name="transaction_date"]');
+    if (transactionDateInput) {
+        const transactionDate = new Date(transactionDateInput.value);
+        const currentDate = new Date();
+        const earliestDate = new Date('2024-11-23');
+
+        if (transactionDate > currentDate) {
+            showAlert('Transaction date cannot be in the future.');
+        } else if (transactionDate < earliestDate) {
+            showAlert('Transaction date cannot be earlier than 23-11-2024.');
+        }
+    }
+
+    // Check file upload
+    const fileInput = form.querySelector('[name="payment_receipt"]');
+    if (!fileInput || !fileInput.files.length) {
+        showAlert('Please upload the transaction receipt.');
+    }
+
+    // Stop submission if validation fails
+    if (!isValid) {
+        messageContainer.textContent = 'Please fill in all required fields and correct errors.';
+        messageContainer.style.color = 'red';
+        return;
+    }
+
+    // Proceed with submission
+    submitButton.disabled = true;
+    submitButton.textContent = 'Submitting...';
+
     fetch('./assets/php/formhandler.php', {
         method: 'POST',
         body: formData,
     })
         .then(response => {
-            // Check if the response is okay
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            return response.json(); // Parse the JSON response
+            return response.json();
         })
         .then(data => {
             if (data.success) {
-                // Show success message
-                messageContainer.textContent = data.message;
+                messageContainer.textContent = data.message || 'Registration successful!';
                 messageContainer.style.color = 'green';
-                alert(`Success: ${data.message}`); // Display success alert
-                form.reset(); // Reset the form
+                alert(`Success: ${data.message || 'Registration successful!'}`);
+                form.reset();
             } else {
-                // Show error message from the server
-                messageContainer.textContent = data.message;
+                messageContainer.textContent = data.message || 'An error occurred. Please try again.';
                 messageContainer.style.color = 'red';
-                alert(`Error: ${data.message}`); // Display error alert
+                alert(`Error: ${data.message || 'An error occurred. Please try again.'}`);
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            // Show a generic error message
-            messageContainer.textContent = 'An error occurred while processing your request. Please try again.';
+            messageContainer.textContent = 'An error occurred while processing your request. Please try again later.';
             messageContainer.style.color = 'red';
-            alert('An error occurred. Please try again later.'); // Display generic error alert
+            alert('An error occurred. Please try again later.');
+        })
+        .finally(() => {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Register Now';
         });
 });
