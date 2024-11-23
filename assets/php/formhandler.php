@@ -3,8 +3,8 @@ header('Content-Type: application/json');
 
 // Database credentials
 $host = 'localhost';
-$dbname = 'rebicor4_conference_db';
-$username = 'rebicor4_root';
+$dbname = 'rebicor4_my_e_church_repo';
+$username = 'rebicor4_shalom';
 $password = 'conference_db';
 
 // Receipt directory
