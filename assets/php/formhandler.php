@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 $host = 'localhost';
 $dbname = 'rebicor4_my_e_church_repo';
 $username = 'rebicor4_shalom';
-$password = 'conference_db';
+$password = 'UNYOpat2017@';
 
 // Receipt directory
 $uploadDir = __DIR__ . '/../receipt/';
