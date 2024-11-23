@@ -101,7 +101,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt->execute();
         http_response_code(200);
-        echo json_encode(['success' => true, 'message' => "Registration successful! Thank you, $fullname."]);
+        $named = $title." ".$fullname;
+        echo json_encode(['success' => true, 'message' => "Registration successful! Thank you, $named."]);
     } catch (PDOException $e) {
         http_response_code(500);
         echo json_encode(['success' => false, 'message' => 'Error saving data: ' . $e->getMessage()]);
