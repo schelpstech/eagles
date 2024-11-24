@@ -56,26 +56,6 @@ document.querySelector('.registration-form').addEventListener('submit', function
         }
     }
 
-    // Validate transaction date
-    const transactionDateInput = form.querySelector('[name="transaction_date"]');
-    if (transactionDateInput) {
-        const transactionDate = new Date(transactionDateInput.value);
-        const currentDate = new Date();
-        const earliestDate = new Date('2024-11-23');
-
-        if (transactionDate > currentDate) {
-            showAlert('Transaction date cannot be in the future.');
-        } else if (transactionDate < earliestDate) {
-            showAlert('Transaction date cannot be earlier than 23-11-2024.');
-        }
-    }
-
-    // Check file upload
-    const fileInput = form.querySelector('[name="payment_receipt"]');
-    if (!fileInput || !fileInput.files.length) {
-        showAlert('Please upload the transaction receipt.');
-    }
-
     // Stop submission if validation fails
     if (!isValid) {
         messageContainer.textContent = 'Please fill in all required fields and correct errors.';
