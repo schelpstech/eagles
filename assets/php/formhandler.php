@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } while ($exists > 0);
 
         $query = "INSERT INTO registrations 
-                  (regid, fullname, gender, title, position, department, participation_mode, email, phone, church_name, payment_receipt, transaction_date)
+                  (regid, fullname, gender, title, position, department, participation_mode, email, phone, church_name)
                   VALUES (:ref, :fullname, :gender, :title, :position, :department, :participation_mode, :email, :phone, :church_name)";
 
         $stmt = $pdo->prepare($query);
