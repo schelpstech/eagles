@@ -4,11 +4,11 @@ header('Content-Type: application/json');
 // Database credentials
 $host = 'localhost';
 $dbname = 'rebicor4_my_e_church_repo';
-$username = 'rebicor4_shalom';
+$uname = 'rebicor4_shalom';
 $pd = 'UNYOpat2017@';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $pd);
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $uname, $pd);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     http_response_code(500);
