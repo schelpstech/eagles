@@ -51,8 +51,17 @@ document.querySelector('.registration-form').addEventListener('submit', function
         const churchName = churchNameInput.value.trim();
         const wordCount = churchName.split(/\s+/).length;
 
-        if (wordCount < 2) {
+        if (wordCount < 4) {
             showAlert('Church name must be written in full (at least 4 words).');
+        }
+    }
+
+    // Validate email (not required, but must be valid if filled)
+    const emailInput = form.querySelector('[name="email"]');
+    if (emailInput) {
+        const email = emailInput.value.trim();
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showAlert('Please enter a valid email address.');
         }
     }
 
