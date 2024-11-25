@@ -51,7 +51,7 @@ document.querySelector('.registration-form').addEventListener('submit', function
         const churchName = churchNameInput.value.trim();
         const wordCount = churchName.split(/\s+/).length;
 
-        if (wordCount < 4) {
+        if (wordCount < 2) {
             showAlert('Church name must be written in full (at least 4 words).');
         }
     }
